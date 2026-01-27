@@ -1,46 +1,59 @@
-🗝️ KeyRoom — Password Manager
+# 🗝️ KeyRoom — Password Manager
 
-A modern and simple password manager application built as a full-stack portfolio project using React, Tailwind CSS, Node.js, Express, and MongoDB.
-This project is designed to securely store and manage credentials, with plans to add user authentication and multi-user support in future updates.
+A modern and simple **password manager application** built as a full-stack portfolio project using **React, Tailwind CSS, Node.js, Express, and MongoDB**.  
+This project is designed to securely store and manage credentials, with plans to add **user authentication and multi-user support** in future updates.
 
-🚀 Current Features
+---
 
-🗄️ Add, edit and delete saved credentials
+## 🚀 Current Features
 
-🔐 Store passwords securely in database
+- 🗄️ Add, edit and delete saved credentials
+- 🔐 Store passwords securely in the database
+- 👁️ Show / hide password option
+- 📱 Responsive and clean UI
+- ⚡ Fast and lightweight
 
-👁️ Show / hide password option
+---
 
-📱 Responsive and clean UI
+## 🔮 Planned Features (Coming Soon)
 
-⚡ Fast and lightweight
+- 🔐 User Registration & Login system
+- 👤 Each user will have a private vault
+- 🔒 JWT Authentication & Authorization
+- 🔑 Master password support
+- 🔍 Search and filter credentials
 
-🔮 Planned Features (Coming Soon)
+---
 
-🔐 User Registration & Login system
+## 🛠️ Tech Stack
 
-👤 Each user will have a private vault
+### Frontend
 
-🔒 JWT Authentication & Authorization
+- React
+- Tailwind CSS
 
-🔑 Master password support
+### Backend
 
-🔍 Search and filter credentials
+- Node.js
+- Express.js
 
-🛠️ Tech Stack
+### Database
 
-Frontend
+- MongoDB
 
-React
+---
 
-Tailwind CSS
+## 📸 Screenshots
 
-Backend
+_Add screenshots of your application here_
 
-Node.js
+---
 
-Express.js
+## ⚙️ Installation & Setup
 
-Database
+Clone the repository:
 
-MongoDB
+```bash
+git clone https://github.com/devmashud/keyroom-password-manager.git
+cd keyroom-password-manager
+```
