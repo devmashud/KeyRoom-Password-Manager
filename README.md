@@ -1,17 +1,46 @@
-# React + Vite
+🗝️ KeyRoom — Password Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and simple password manager application built as a full-stack portfolio project using React, Tailwind CSS, Node.js, Express, and MongoDB.
+This project is designed to securely store and manage credentials, with plans to add user authentication and multi-user support in future updates.
 
-Currently, two official plugins are available:
+🚀 Current Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🗄️ Add, edit and delete saved credentials
 
-## React Compiler
+🔐 Store passwords securely in database
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+👁️ Show / hide password option
 
-## Expanding the ESLint configuration
+📱 Responsive and clean UI
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# KeyRoom-Password-Manager
+⚡ Fast and lightweight
+
+🔮 Planned Features (Coming Soon)
+
+🔐 User Registration & Login system
+
+👤 Each user will have a private vault
+
+🔒 JWT Authentication & Authorization
+
+🔑 Master password support
+
+🔍 Search and filter credentials
+
+🛠️ Tech Stack
+
+Frontend
+
+React
+
+Tailwind CSS
+
+Backend
+
+Node.js
+
+Express.js
+
+Database
+
+MongoDB
