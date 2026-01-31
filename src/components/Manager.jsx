@@ -1,9 +1,15 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function Manager() {
   const ref = useRef();
+  const [form, setform] = useState({site: "", username: "", password:""})
 
+  const savePassword = () => {
+    
+  }
+  console.log(form)
+  
   const showpassword = () => {
     if(ref.current.src.includes("icons/eyecross.png") ){
       ref.current.src = "icons/eye.png"
@@ -12,6 +18,15 @@ function Manager() {
       ref.current.src = "icons/eyecross.png"
     }
   }
+
+  const handleChange = (e) => {
+    setform({...form, [e.target.name] : e.target.value
+     })
+
+
+    console.log(e.target.value)
+  }
+  
   
   return (
     <>
@@ -40,12 +55,18 @@ function Manager() {
 
         <div className="  flex flex-col items-center gap-6 p-4 ">
           <input
+          value={form.site}
+          onChange={handleChange}
+          name="site"
             placeholder="Enter Website url"
             className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
             type="text "
           />
           <div className="flex w-full gap-10">
             <input
+            value={form.username}
+            onChange={handleChange}
+            name="username"
               placeholder="Enter Username"
               className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
               type="text "
@@ -53,6 +74,9 @@ function Manager() {
 
             <div className="relative">
               <input
+              value={form.password}
+              onChange={handleChange}
+              name="password"
                 placeholder="Enter Password"
                 className="bg-white rounded-3xl border border-green-500 w-full p-4 px-6 py-1"
                 type="text "
@@ -64,6 +88,7 @@ function Manager() {
           </div>
 
           <button
+           onClick={savePassword}
             className="flex justify-center items-center 
             
             bg-green-500 hover:bg-green-400 rounded-full py-3 px-8 border border-green-600 w-fit"
