@@ -1,14 +1,25 @@
 import React from "react";
-import Logo from "./Logo";
+import { useRef } from "react";
 
 function Manager() {
+  const ref = useRef();
+
+  const showpassword = () => {
+    if(ref.current.src.includes("icons/eyecross.png") ){
+      ref.current.src = "icons/eye.png"
+    }
+    else{
+      ref.current.src = "icons/eyecross.png"
+    }
+  }
+  
   return (
     <>
-      <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-        <div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-fuchsia-400 opacity-20 blur-[100px]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full bg-green-100 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-fuchsia-400 opacity-20 blur-[100px]"></div>
       </div>
 
-      <div className="  mycontainer  bg-slate-50 px-40 ">
+      <div className="  mycontainer  px-40 ">
         <div className="  flex justify-center gap-10 m-2">
           <h1 className="text-4xl  font-bold text-center justify-center ">
             <div className="flex flex-col leading-none">
@@ -29,33 +40,40 @@ function Manager() {
 
         <div className="  flex flex-col items-center gap-6 p-4 ">
           <input
+            placeholder="Enter Website url"
             className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
             type="text "
           />
           <div className="flex w-full gap-10">
             <input
+              placeholder="Enter Username"
               className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
               type="text "
             />
-            <input
-              className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
-              type="text "
-            />
+
+            <div className="relative">
+              <input
+                placeholder="Enter Password"
+                className="bg-white rounded-3xl border border-green-500 w-full p-4 px-6 py-1"
+                type="text "
+              />
+              <span className="absolute py-1 right-[1px] top-[-2px] cursor-pointer" onClick={showpassword}>
+                <img ref={ref} className="p-2" src="/icons/eye.png" width={31} alt="eye" />
+              </span>
+            </div>
           </div>
 
-          
+          <button
+            className="flex justify-center items-center 
             
-            <button className="flex justify-center items-center 
-            
-            bg-green-500 rounded-full py-2 px-5 w-fit">
-              <lord-icon
+            bg-green-500 hover:bg-green-400 rounded-full py-3 px-8 border border-green-600 w-fit"
+          >
+            <lord-icon
               src="https://cdn.lordicon.com/efxgwrkc.json"
               trigger="hover"
             ></lord-icon>
-              
-              Add Password
-              </button>
-          
+            Add Password
+          </button>
         </div>
       </div>
     </>
