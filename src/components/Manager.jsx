@@ -1,14 +1,25 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function Manager() {
   const ref = useRef();
   const [form, setform] = useState({site: "", username: "", password:""})
+  const [passwordArray, setPasswordArray] = useState([]);
+
+  useEffect(() => {
+   let passwords = localStorage.getItem("passwords")
+   if(passwords){
+    setPasswordArray(JSON.parse(passwords))
+   }
+  }, [])
+  
 
   const savePassword = () => {
-    
+    console.log(form)
+    setPasswordArray([...passwordArray, form] )
+    localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]))
+    console.log(passwordArray)
   }
-  console.log(form)
   
   const showpassword = () => {
     if(ref.current.src.includes("icons/eyecross.png") ){
@@ -79,7 +90,7 @@ function Manager() {
               name="password"
                 placeholder="Enter Password"
                 className="bg-white rounded-3xl border border-green-500 w-full p-4 px-6 py-1"
-                type="text "
+                type="text"
               />
               <span className="absolute py-1 right-[1px] top-[-2px] cursor-pointer" onClick={showpassword}>
                 <img ref={ref} className="p-2" src="/icons/eye.png" width={31} alt="eye" />
