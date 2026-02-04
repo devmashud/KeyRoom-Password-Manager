@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Manager from './components/Manager'
 import { Routes, Route } from 'react-router-dom'
 // import About from './routes/About'
+// import About from '../pages/About'
 
 function App() {
   const [count, setCount] = useState(0)

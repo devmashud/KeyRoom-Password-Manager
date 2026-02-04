@@ -32,6 +32,13 @@ function Manager() {
     console.log(e.target.value);
   };
 
+  const getLink = (url) => {
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return "https://" + url;
+  };
+
   return (
     <>
       <div className="absolute inset-0 -z-10 h-full w-full bg-green-100 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
@@ -117,34 +124,38 @@ function Manager() {
         <div className="passwords ">
           <h2 className="text-2xl font-bold py-4">Your Passwords</h2>
 
-          {passwordArray.length === 0 && <div className="py-2">No Password to Show</div> }
-          {passwordArray != 0 && <table className="table w-full overflow-hidden rounded-2xl">
-            <thead className="bg-green-600 text-white">
-              <tr className="">
-                <th className="py-2" >Song</th>
-                <th className="py-2" >Artist</th>
-                <th className="py-2" >Year</th>
-              </tr>
-            </thead>
-            <tbody className="bg-green-100">
-              <tr className="">
-                <td  className=" py-2 border border-white text-center w-32">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                <td  className=" py-2 border border-white text-center w-32">Malcolm Lockyer</td>
-                <td  className=" py-2 border border-white text-center w-32">1961</td>
-              </tr>
-              <tr className="">
-                <td  className=" py-2 border border-white text-center w-32">Witchy Woman</td>
-                <td  className=" py-2 border border-white text-center w-32">The Eagles</td>
-                <td  className=" py-2 border border-white text-center w-32">1972</td>
-              </tr>
-              <tr className="">
-                <td  className=" py-2 border border-white text-center w-32">Shining Star</td>
-                <td  className=" py-2 border border-white text-center w-32">Earth, Wind, and Fire</td>
-                <td  className=" py-2 border border-white text-center w-32">1975</td>
-              </tr>
-            </tbody>
-          </table>
-          }
+          {passwordArray.length === 0 && (
+            <div className="py-2">No Password to Show</div>
+          )}
+          {passwordArray != 0 && (
+            <table className="table w-full overflow-hidden rounded-2xl">
+              <thead className="bg-green-600 text-white">
+                <tr className="">
+                  <th className="py-2">Site</th>
+                  <th className="py-2">Username</th>
+                  <th className="py-2">Password</th>
+                </tr>
+              </thead>
+              <tbody className="bg-green-100">
+                {passwordArray.map((item, index) => (
+                  <tr key={index} className="">
+                    <td className="py-2 border border-white text-center w-32">
+                      <a href={getLink(item.site)} target="_blank">
+                        {item.site}
+                      </a>
+                    </td>
+
+                    <td className=" py-2 border border-white text-center w-32">
+                      {item.username}
+                    </td>
+                    <td className=" py-2 border border-white text-center w-32">
+                      {item.password}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </>
