@@ -1,8 +1,10 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
+import Copy from "./Copy";
 
 function Manager() {
   const ref = useRef();
+  const passwordRef = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -21,8 +23,11 @@ function Manager() {
   const showpassword = () => {
     if (ref.current.src.includes("icons/eyecross.png")) {
       ref.current.src = "icons/eye.png";
+          passwordRef.current.type = "text"
     } else {
       ref.current.src = "icons/eyecross.png";
+          passwordRef.current.type = "password"
+
     }
   };
 
@@ -88,7 +93,8 @@ function Manager() {
                 name="password"
                 placeholder="Enter Password"
                 className="bg-white rounded-3xl border border-green-500 w-full p-4 px-6 py-1"
-                type="text"
+                type="password"
+                ref={passwordRef}
               />
               <span
                 className="absolute py-1 right-[1px] top-[-2px] cursor-pointer"
@@ -97,7 +103,7 @@ function Manager() {
                 <img
                   ref={ref}
                   className="p-2"
-                  src="/icons/eye.png"
+                  src="/icons/eyecross.png"
                   width={31}
                   alt="eye"
                 />
@@ -137,17 +143,27 @@ function Manager() {
               <tbody className="bg-green-100">
                 {passwordArray.map((item, index) => (
                   <tr key={index} className="">
-                    <td className="py-2 border border-white text-center w-32">
-                      <a href={getLink(item.site)} target="_blank">
+                    <td className="py-2 border border-white text-center w-32  ">
+                      <div className="flex justify-center items-center gap-2">
+                        <a href={getLink(item.site)} target="_blank">
                         {item.site}
                       </a>
+                      <Copy  ></Copy>
+                      </div>
                     </td>
 
                     <td className=" py-2 border border-white text-center w-32">
-                      {item.username}
+                     <div className="flex justify-center items-center gap-2">
+                       {item.username}
+                       <Copy/>
+                     </div>
+                      
                     </td>
                     <td className=" py-2 border border-white text-center w-32">
+                     <div className="flex justify-center items-center gap-2">
                       {item.password}
+                      <Copy></Copy>
+                     </div>
                     </td>
                   </tr>
                 ))}
@@ -155,7 +171,9 @@ function Manager() {
             </table>
           )}
         </div>
+        
       </div>
+
     </>
   );
 }
