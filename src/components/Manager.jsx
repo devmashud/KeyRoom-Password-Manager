@@ -44,6 +44,12 @@ function Manager() {
     return "https://" + url;
   };
 
+  const CopyText = (text) => {
+    navigator.clipboard.writeText(text)
+    // alert(`copy the text ${text}`)
+  }
+  
+
   return (
     <>
      
@@ -148,21 +154,27 @@ function Manager() {
                         <a href={getLink(item.site)} target="_blank">
                         {item.site}
                       </a>
-                      <Copy  ></Copy>
+                      <div className="flex justify-center items-center" onClick={()=>{CopyText(item.site)}}>
+                        <Copy></Copy>
+                      </div>
                       </div>
                     </td>
 
                     <td className=" py-2 border border-white text-center w-32">
                      <div className="flex justify-center items-center gap-2">
                        {item.username}
-                       <Copy/>
+                         <div className="flex justify-center items-center" onClick={()=>{CopyText(item.username)}}>
+                        <Copy></Copy>
+                      </div>
                      </div>
                       
                     </td>
                     <td className=" py-2 border border-white text-center w-32">
                      <div className="flex justify-center items-center gap-2">
                       {item.password}
-                      <Copy></Copy>
+                        <div className="flex justify-center items-center" onClick={()=>{CopyText(item.password)}}>
+                        <Copy></Copy>
+                      </div>
                      </div>
                     </td>
                   </tr>
