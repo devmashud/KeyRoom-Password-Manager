@@ -5,6 +5,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify/unstyled";
 import EditBtn from "./EditBtn";
 import DeleteBtn from "./DeleteBtn";
+import { v4 as uuidv4 } from 'uuid';
+
+
+
 
 function Manager() {
   const ref = useRef();
@@ -21,9 +25,16 @@ function Manager() {
   }, []);
 
   const savePassword = () => {
-    setPasswordArray([...passwordArray, form]);
-    localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]));
+    const newItem = {...form, id: uuidv4()}
+    const updated = [...passwordArray, newItem]
+    setPasswordArray(updated);
+    localStorage.setItem("passwords", JSON.stringify(updated));
   };
+
+  const deletePassword = () => {
+    
+  }
+  
 
   const showpassword = () => {
     if (ref.current.src.includes("icons/eyecross.png")) {
