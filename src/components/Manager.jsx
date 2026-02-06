@@ -1,10 +1,15 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import Copy from "./Copy";
+import { ToastContainer, toast } from "react-toastify";
+import { Bounce } from "react-toastify/unstyled";
+import EditBtn from "./EditBtn";
+import DeleteBtn from "./DeleteBtn";
 
 function Manager() {
   const ref = useRef();
-  const passwordRef = useRef()
+  const passwordRef = useRef();
+  const notify = () => toast("Wow so easy !");
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
 
@@ -23,11 +28,10 @@ function Manager() {
   const showpassword = () => {
     if (ref.current.src.includes("icons/eyecross.png")) {
       ref.current.src = "icons/eye.png";
-          passwordRef.current.type = "text"
+      passwordRef.current.type = "text";
     } else {
       ref.current.src = "icons/eyecross.png";
-          passwordRef.current.type = "password"
-
+      passwordRef.current.type = "password";
     }
   };
 
@@ -45,14 +49,37 @@ function Manager() {
   };
 
   const CopyText = (text) => {
-    navigator.clipboard.writeText(text)
+    toast("Copied to Clipboard!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+     
+    });
+    navigator.clipboard.writeText(text);
+
     // alert(`copy the text ${text}`)
-  }
-  
+  };
 
   return (
     <>
-     
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
 
       <div className="  mycontainer px-40 py-10">
         <div className="  flex justify-center gap-10 m-2">
@@ -127,7 +154,7 @@ function Manager() {
               src="https://cdn.lordicon.com/efxgwrkc.json"
               trigger="hover"
             ></lord-icon>
-            Add Password
+            <span className="px-1">Save</span>
           </button>
         </div>
 
@@ -144,6 +171,7 @@ function Manager() {
                   <th className="py-2">Site</th>
                   <th className="py-2">Username</th>
                   <th className="py-2">Password</th>
+                  <th className="py-2">Action</th>
                 </tr>
               </thead>
               <tbody className="bg-green-100">
@@ -152,30 +180,50 @@ function Manager() {
                     <td className="py-2 border border-white text-center w-32  ">
                       <div className="flex justify-center items-center gap-2">
                         <a href={getLink(item.site)} target="_blank">
-                        {item.site}
-                      </a>
-                      <div className="flex justify-center items-center" onClick={()=>{CopyText(item.site)}}>
-                        <Copy></Copy>
-                      </div>
+                          {item.site}
+                        </a>
+                        <div
+                          className="flex justify-center items-center"
+                          onClick={() => {
+                            CopyText(item.site);
+                          }}
+                        >
+                          <Copy></Copy>
+                        </div>
                       </div>
                     </td>
 
                     <td className=" py-2 border border-white text-center w-32">
-                     <div className="flex justify-center items-center gap-2">
-                       {item.username}
-                         <div className="flex justify-center items-center" onClick={()=>{CopyText(item.username)}}>
-                        <Copy></Copy>
+                      <div className="flex justify-center items-center gap-2">
+                        {item.username}
+                        <div
+                          className="flex justify-center items-center"
+                          onClick={() => {
+                            CopyText(item.username);
+                          }}
+                        >
+                          <Copy></Copy>
+                        </div>
                       </div>
-                     </div>
-                      
                     </td>
                     <td className=" py-2 border border-white text-center w-32">
-                     <div className="flex justify-center items-center gap-2">
-                      {item.password}
-                        <div className="flex justify-center items-center" onClick={()=>{CopyText(item.password)}}>
-                        <Copy></Copy>
+                      <div className="flex justify-center items-center gap-2">
+                        {item.password}
+                        <div
+                          className="flex justify-center items-center"
+                          onClick={() => {
+                            CopyText(item.password);
+                          }}
+                        >
+                          <Copy></Copy>
+                        </div>
                       </div>
-                     </div>
+                    </td>
+                    <td className="  py-2 border border-white text-center w-32">
+                          <div className="flex justify-center items-center gap-5">
+                            <span><EditBtn/></span>
+                          <span> <DeleteBtn/> </span>
+                          </div>
                     </td>
                   </tr>
                 ))}
@@ -183,9 +231,7 @@ function Manager() {
             </table>
           )}
         </div>
-        
       </div>
-
     </>
   );
 }
