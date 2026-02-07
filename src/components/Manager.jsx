@@ -23,7 +23,7 @@ function Manager() {
       setPasswordArray(JSON.parse(passwords));
     }
   }, []);
-
+  // let id = uuidv4();
   const savePassword = () => {
     const newItem = {...form, id: uuidv4()}
     const updated = [...passwordArray, newItem]
@@ -31,8 +31,11 @@ function Manager() {
     localStorage.setItem("passwords", JSON.stringify(updated));
   };
 
-  const deletePassword = () => {
-    
+  const deletePassword = (id) => {
+    console.log("Deleting password with id", id)
+  }
+  const EditPassword = (id) => {
+    console.log("Edit password with id", id)
   }
   
 
@@ -187,7 +190,7 @@ function Manager() {
               </thead>
               <tbody className="bg-green-100">
                 {passwordArray.map((item, index) => (
-                  <tr key={index} className="">
+                  <tr key={item.id} className="">
                     <td className="py-2 border border-white text-center w-32  ">
                       <div className="flex justify-center items-center gap-2">
                         <a href={getLink(item.site)} target="_blank">
@@ -232,8 +235,8 @@ function Manager() {
                     </td>
                     <td className="  py-2 border border-white text-center w-32">
                           <div className="flex justify-center items-center gap-5">
-                            <span><EditBtn/></span>
-                          <span> <DeleteBtn/> </span>
+                            <span onClick={()=>{EditPassword(item.id)}} ><EditBtn/></span>
+                          <span onClick={()=>{deletePassword(item.id)}}> <DeleteBtn/> </span>
                           </div>
                     </td>
                   </tr>
