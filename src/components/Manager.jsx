@@ -33,6 +33,9 @@ function Manager() {
 
   const deletePassword = (id) => {
     console.log("Deleting password with id", id)
+    const deletItem = passwordArray.filter(item=>item.id!==id);
+    setPasswordArray(deletItem)
+    localStorage.setItem("passwords", JSON.stringify(deletItem))
   }
   const EditPassword = (id) => {
     console.log("Edit password with id", id)
