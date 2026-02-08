@@ -25,6 +25,11 @@ function Manager() {
   }, []);
   // let id = uuidv4();
   const savePassword = () => {
+    if (!form.site || !form.username || !form.password) {
+  toast("Fill all fields")
+  return
+}
+
     const newItem = {...form, id: uuidv4()}
     const updated = [...passwordArray, newItem]
     setPasswordArray(updated);
@@ -34,7 +39,7 @@ function Manager() {
 
   const deletePassword = (id) => {
     console.log("Deleting password with id", id)
-    let confirmAsk = confirm("do you want delete this password") 
+    let confirmAsk = window.confirm("do you want delete this password") 
     if(confirmAsk){
       const deletItem = passwordArray.filter(item=>item.id!==id);
     setPasswordArray(deletItem)
@@ -130,7 +135,7 @@ function Manager() {
             name="site"
             placeholder="Enter Website url"
             className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
-            type="text "
+            type="text"
           />
           <div className="flex w-full gap-10">
             <input
@@ -139,7 +144,7 @@ function Manager() {
               name="username"
               placeholder="Enter Username"
               className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
-              type="text "
+              type="text"
             />
 
             <div className="relative">
