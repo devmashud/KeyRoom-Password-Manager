@@ -29,16 +29,22 @@ function Manager() {
     const updated = [...passwordArray, newItem]
     setPasswordArray(updated);
     localStorage.setItem("passwords", JSON.stringify(updated));
+    setform({ site: "", username: "", password: "" })
   };
 
   const deletePassword = (id) => {
     console.log("Deleting password with id", id)
-    const deletItem = passwordArray.filter(item=>item.id!==id);
+    let confirmAsk = confirm("do you want delete this password") 
+    if(confirmAsk){
+      const deletItem = passwordArray.filter(item=>item.id!==id);
     setPasswordArray(deletItem)
     localStorage.setItem("passwords", JSON.stringify(deletItem))
+    }
   }
   const EditPassword = (id) => {
     console.log("Edit password with id", id)
+    setform(passwordArray.filter(i=>i.id===id)[0])
+    setPasswordArray(passwordArray.filter(item=>item.id!==id))
   }
   
 
