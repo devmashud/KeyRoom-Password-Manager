@@ -5,10 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Bounce } from "react-toastify/unstyled";
 import EditBtn from "./EditBtn";
 import DeleteBtn from "./DeleteBtn";
-import { v4 as uuidv4 } from 'uuid';
-
-
-
+import { v4 as uuidv4 } from "uuid";
 
 function Manager() {
   const ref = useRef();
@@ -26,32 +23,52 @@ function Manager() {
   // let id = uuidv4();
   const savePassword = () => {
     if (!form.site || !form.username || !form.password) {
-  toast("Fill all fields")
-  return
-}
+      toast("Fill all fields");
+      return;
+    }
 
-    const newItem = {...form, id: uuidv4()}
-    const updated = [...passwordArray, newItem]
+    const newItem = { ...form, id: uuidv4() };
+    const updated = [...passwordArray, newItem];
     setPasswordArray(updated);
+       toast("Saved password", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+     
+    })
     localStorage.setItem("passwords", JSON.stringify(updated));
-    setform({ site: "", username: "", password: "" })
+    setform({ site: "", username: "", password: "" });
   };
 
   const deletePassword = (id) => {
-    console.log("Deleting password with id", id)
-    let confirmAsk = window.confirm("do you want delete this password") 
-    if(confirmAsk){
-      const deletItem = passwordArray.filter(item=>item.id!==id);
-    setPasswordArray(deletItem)
-    localStorage.setItem("passwords", JSON.stringify(deletItem))
+    console.log("Deleting password with id", id);
+    let confirmAsk = window.confirm("do you want delete this password");
+    if (confirmAsk) {
+      const deletItem = passwordArray.filter((item) => item.id !== id);
+      setPasswordArray(deletItem);
+      toast("Deleted Sucessfully", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      localStorage.setItem("passwords", JSON.stringify(deletItem));
     }
-  }
+  };
   const EditPassword = (id) => {
-    console.log("Edit password with id", id)
-    setform(passwordArray.filter(i=>i.id===id)[0])
-    setPasswordArray(passwordArray.filter(item=>item.id!==id))
-  }
-  
+    console.log("Edit password with id", id);
+    setform(passwordArray.filter((i) => i.id === id)[0]);
+    setPasswordArray(passwordArray.filter((item) => item.id !== id));
+  };
 
   const showpassword = () => {
     if (ref.current.src.includes("icons/eyecross.png")) {
@@ -86,7 +103,6 @@ function Manager() {
       draggable: true,
       progress: undefined,
       theme: "light",
-     
     });
     navigator.clipboard.writeText(text);
 
@@ -248,10 +264,23 @@ function Manager() {
                       </div>
                     </td>
                     <td className="  py-2 border border-white text-center w-32">
-                          <div className="flex justify-center items-center gap-5">
-                            <span onClick={()=>{EditPassword(item.id)}} ><EditBtn/></span>
-                          <span onClick={()=>{deletePassword(item.id)}}> <DeleteBtn/> </span>
-                          </div>
+                      <div className="flex justify-center items-center gap-5">
+                        <span
+                          onClick={() => {
+                            EditPassword(item.id);
+                          }}
+                        >
+                          <EditBtn />
+                        </span>
+                        <span
+                          onClick={() => {
+                            deletePassword(item.id);
+                          }}
+                        >
+                          {" "}
+                          <DeleteBtn />{" "}
+                        </span>
+                      </div>
                     </td>
                   </tr>
                 ))}
