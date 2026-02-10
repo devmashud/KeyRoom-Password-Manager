@@ -125,7 +125,7 @@ function Manager() {
         transition={Bounce}
       />
 
-      <div className="  mycontainer px-40 py-10">
+      <div className=" p-2  md:mycontainer ">
         <div className="  flex justify-center gap-10 m-2">
           <h1 className="text-4xl  font-bold text-center justify-center ">
             <div className="flex flex-col leading-none">
@@ -153,7 +153,7 @@ function Manager() {
             className="bg-white rounded-3xl border border-green-500 w-full p-4 py-1"
             type="text"
           />
-          <div className="flex w-full gap-10">
+          <div className="flex flex-col md:flex-row w-full gap-6 md:gap-10">
             <input
               value={form.username}
               onChange={handleChange}
