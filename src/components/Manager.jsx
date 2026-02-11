@@ -125,7 +125,7 @@ function Manager() {
         transition={Bounce}
       />
 
-      <div className=" p-2  md:mycontainer ">
+      <div className=" py-10 md:mycontainer md:px-40 md:py-10 ">
         <div className="  flex justify-center gap-10 m-2">
           <h1 className="text-4xl  font-bold text-center justify-center ">
             <div className="flex flex-col leading-none">
@@ -202,14 +202,15 @@ function Manager() {
           </button>
         </div>
 
-        <div className="passwords  ">
-          <h2 className="text-2xl font-bold py-4">Your Passwords</h2>
+        <div className="passwords px-3 ">
+          <h2 className="text-2xl px-2 md:px-0 font-bold py-4">Your Passwords</h2>
 
           {passwordArray.length === 0 && (
             <div className="py-2">No Password to Show</div>
           )}
           {passwordArray != 0 && (
-            <table className="table w-full overflow-hidden rounded-2xl">
+            <div className="overflow-x-auto w-full">
+              <table className="table w-full rounded-2xl">
               <thead className="bg-green-600 text-white">
                 <tr className="">
                   <th className="py-2">Site</th>
@@ -218,7 +219,7 @@ function Manager() {
                   <th className="py-2">Action</th>
                 </tr>
               </thead>
-              <tbody className="bg-green-100">
+              <tbody className="bg-green-100 ">
                 {passwordArray.map((item, index) => (
                   <tr key={item.id} className="">
                     <td className="py-2 border border-white text-center w-32  ">
@@ -286,6 +287,7 @@ function Manager() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
       </div>
