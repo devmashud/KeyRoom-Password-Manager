@@ -13,23 +13,40 @@ function Manager() {
   const notify = () => toast("Wow so easy !");
   const [form, setform] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
+  const API_BASE = "http://localhost:3000/api/passwords";
 
   useEffect(() => {
-    let passwords = localStorage.getItem("passwords");
-    if (passwords) {
-      setPasswordArray(JSON.parse(passwords));
+    // let passwords = localStorage.getItem("passwords");
+    // if (passwords) {
+    //   setPasswordArray(JSON.parse(passwords));
+    // }
+    const loadPassword = async()=>{
+      const res = await fetch(API_BASE)
+      const data = await res.json()
+      setPasswordArray(data)
     }
+
+    loadPassword()
+
   }, []);
   // let id = uuidv4();
-  const savePassword = () => {
+  const savePassword = async() => {
     if (!form.site || !form.username || !form.password) {
       toast("Fill all fields");
       return;
     }
 
-    const newItem = { ...form, id: uuidv4() };
-    const updated = [...passwordArray, newItem];
-    setPasswordArray(updated);
+    // const newItem = { ...form, id: uuidv4() };
+    // const updated = [...passwordArray, newItem];
+
+    const res = await fetch(API_BASE, {
+      method:"POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form)
+    })
+    const data = await res.json();
+
+    setPasswordArray([data, ...passwordArray]);
        toast("Saved password", {
       position: "top-right",
       autoClose: 2000,
